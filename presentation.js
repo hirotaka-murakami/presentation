@@ -207,8 +207,8 @@ onmousemove = function (event) {
     // カーソルが文字の上にあるときの処理
     if (beginnerFlag || intermediateFlag || nightmareFlag) {
         for (let i = 0; i < 26; i++) {
-            if (event.pageX >= positionObjectArray[i].left && event.pageX <= positionObjectArray[i].right
-                && event.pageY >= positionObjectArray[i].top && event.pageY <= positionObjectArray[i].bottom) {
+            if (event.pageX +115>= positionObjectArray[i].left && event.pageX+115 <= positionObjectArray[i].right
+                && event.pageY+60 >= positionObjectArray[i].top && event.pageY +60<= positionObjectArray[i].bottom) {
 
                 // 背景色を変える　keyupで文字が消えるフラグを立てる
                 if (cellObjectsList[i].innerText !== "") {
