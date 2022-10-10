@@ -1,0 +1,68 @@
+table {
+    table-layout: fixed;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#tbl-bdr td,
+#tbl-bdr th {
+    border-collapse: collapse;
+    border: 1px solid aliceblue;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    height: 100px;
+    width: 200px;
+    font-size: 50px;
+
+}
+
+.levelButton {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 50px;
+}
+
+p,
+h2 {
+    line-height: 50%;
+}
+
+body {
+    background-color: #333;
+    color: aliceblue;
+}
+
+.explanation {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    font-size: 20px;
+}
+
+.flex {
+    display: flex;
+    font-size: 20px;
+}
+
+.time {
+    width: 250px;
+}
+
+.record {
+    margin-right: auto;
+    width: 250px;
+}
+
+.level {
+    margin-left: auto;
+    width: 500px;
+}
