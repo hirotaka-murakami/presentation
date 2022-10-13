@@ -38,7 +38,7 @@ function beginner() {
     beginnerFlag = true;
     intermediateFlag = false;
     nightmareFlag = false;
-    textDisprayAndGetCellObjectsList();
+    aftrLevelSelect();
 }
 
 // 中級レベル
@@ -46,7 +46,7 @@ function intermediate() {
     beginnerFlag = false;
     intermediateFlag = true;
     nightmareFlag = false;
-    textDisprayAndGetCellObjectsList();
+    aftrLevelSelect();
 }
 
 // ナイトメアレベル
@@ -54,11 +54,11 @@ function nightmare() {
     beginnerFlag = false;
     intermediateFlag = false;
     nightmareFlag = true;
-    textDisprayAndGetCellObjectsList();
+    aftrLevelSelect();
 }
 
 // 文字書き換え 各セルのポジション取得
-function textDisprayAndGetCellObjectsList() {
+function aftrLevelSelect() {
     alphabetArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     shuffledArray = alphabetArray.slice();
     shuffledArray = arrayShuffle(shuffledArray);
