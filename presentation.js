@@ -59,11 +59,11 @@ function textDisprayAndGetCellObjectsList() {
     shuffledArray = arrayShuffle(shuffledArray);
     reverseArray = alphabetArray.slice();
     reverseArray = reverseArray.reverse();
-    cellObjectsList = document.querySelectorAll("td");
 
     // カウント初期化
     count = 0;
 
+    // 各セルに文字追加 ＆ 座標取得
     for (let i = 0; i < 26; i++) {
         cellObjectsList[i].innerText = shuffledArray[i];
         positionObjectArray[i] = {
@@ -226,6 +226,18 @@ onMouseMove = function (event) {
     }
 }
 
+// 拡大率変更時、要素の座標を取得しなおす
+function resizeEvent() {
+    for (let i = 0; i < 26; i++) {
+        positionObjectArray[i] = {
+            top: cellObjectsList[i].getBoundingClientRect().top + window.pageYOffset,
+            bottom: cellObjectsList[i].getBoundingClientRect().bottom + window.pageYOffset,
+            left: cellObjectsList[i].getBoundingClientRect().left + window.pageXOffset,
+            right: cellObjectsList[i].getBoundingClientRect().right + window.pageXOffset
+        }
+    }
+}
+
 //マウス座標出力先
 let output = document.querySelector('#output');
 
@@ -236,6 +248,9 @@ if (output !== null) {
 
 // キーアップイベント
 document.addEventListener('keyup', keyupEvent);
+
+// 拡大率変更イベント
+window.addEventListener('resize', resizeEvent)
 
 
 // 以下コピペ
