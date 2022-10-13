@@ -230,7 +230,7 @@ function timeStr2Num(str) {
 }
 
 // マウスムーブイベント
-onMouseMove = function (event) {
+function onMouseMove(event) {
     // マウス座標の表示
     if (output === null) {
         output = document.querySelector('#output');
