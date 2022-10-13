@@ -59,6 +59,7 @@ function textDisprayAndGetCellObjectsList() {
     shuffledArray = arrayShuffle(shuffledArray);
     reverseArray = alphabetArray.slice();
     reverseArray = reverseArray.reverse();
+    cellObjectsList = document.querySelectorAll("td");
 
     // カウント初期化
     count = 0;
@@ -67,12 +68,13 @@ function textDisprayAndGetCellObjectsList() {
         cellObjectsList[i].innerText = shuffledArray[i];
         positionObjectArray[i] = {
             alphabet: shuffledArray[i],
-            top: cellObjectsList[i].getBoundingClientRect().top,
-            bottom: cellObjectsList[i].getBoundingClientRect().bottom,
-            left: cellObjectsList[i].getBoundingClientRect().left,
-            right: cellObjectsList[i].getBoundingClientRect().right
+            top: cellObjectsList[i].getBoundingClientRect().top + window.pageYOffset,
+            bottom: cellObjectsList[i].getBoundingClientRect().bottom + window.pageYOffset,
+            left: cellObjectsList[i].getBoundingClientRect().left + window.pageXOffset,
+            right: cellObjectsList[i].getBoundingClientRect().right + window.pageXOffset
         }
     }
+
     // ストップウォッチスタート
     reset();
     start();
@@ -95,7 +97,7 @@ function arrayShuffle(array) {
 
 // キーボードが入力されたときの処理
 // クリックした文字と入力したキーが同じなら文字を消す
-function keyup_ivent(event) {
+function keyupEvent(event) {
     console.log("event:", event.key, " flag:", keyFlag, " text:", onCursorText);
     output = document.querySelector('#output');
 
@@ -196,7 +198,7 @@ function timeStr2Num(str) {
 }
 
 // マウスムーブイベント
-onmousemove = function (event) {
+onMouseMove = function (event) {
     // マウス座標の表示
     if (output === null) {
         output = document.querySelector('#output');
@@ -229,12 +231,11 @@ let output = document.querySelector('#output');
 
 //マウス移動時
 if (output !== null) {
-    document.onmousemove = onmousemove;
+    document.onmousemove = onMouseMove;
 }
 
 // キーアップイベント
-document.addEventListener('keyup', keyup_ivent);
-
+document.addEventListener('keyup', keyupEvent);
 
 
 // 以下コピペ
