@@ -17,6 +17,11 @@ let beginnerFlag = false;
 let intermediateFlag = false;
 let nightmareFlag = false;
 
+// ボタン
+let beginnerButton = document.getElementById("beginner");
+let intermediateButton = document.getElementById("intermediate");
+let nightmareButton = document.getElementById("nightmare");
+
 // recordオブジェクト
 let beginnerRecord = document.getElementById("beginnerRecord")
 let intermediateRecord = document.getElementById("intermediateRecord")
@@ -59,6 +64,7 @@ function textDisprayAndGetCellObjectsList() {
     shuffledArray = arrayShuffle(shuffledArray);
     reverseArray = alphabetArray.slice();
     reverseArray = reverseArray.reverse();
+    buttonColorInit();
 
     // カウント初期化
     count = 0;
@@ -78,6 +84,27 @@ function textDisprayAndGetCellObjectsList() {
     // ストップウォッチスタート
     reset();
     start();
+}
+
+// ボタンの色変えたり戻したり
+function buttonColorInit() {
+    switch (true) {
+        case beginnerFlag:
+            beginnerButton.style.backgroundColor = "aqua";
+            intermediateButton.style.backgroundColor = "";
+            nightmareButton.style.backgroundColor = "";
+            break;
+        case intermediateFlag:
+            beginnerButton.style.backgroundColor = "";
+            intermediateButton.style.backgroundColor = "aqua";
+            nightmareButton.style.backgroundColor = "";
+            break;
+        case nightmareFlag:
+            beginnerButton.style.backgroundColor = "";
+            intermediateButton.style.backgroundColor = "";
+            nightmareButton.style.backgroundColor = "aqua";
+            break;
+    }
 }
 
 // 引数の配列の並びをランダムに入れ替える
@@ -107,19 +134,19 @@ function keyupEvent(event) {
         // クリックした文字とキー入力が一致すれば文字を消す
         if (beginnerFlag) {// 初級レベル
             if (onCursorObject.innerText !== "") {
-                textErace()
+                textErace();
             }
         } else if (intermediateFlag) {// 中級レベル
             if (onCursorObject.innerText !== ""
                 && onCursorObject.innerText === alphabetArray[0]) {
-                textErace()
-                alphabetArray.shift()
+                textErace();
+                alphabetArray.shift();
             }
         } else if (nightmareFlag) {// ナイトメア
             if (onCursorObject.innerText !== ""
                 && onCursorObject.innerText === reverseArray[0]) {
-                textErace()
-                reverseArray.shift()
+                textErace();
+                reverseArray.shift();
             }
         }
     }
@@ -128,10 +155,10 @@ function keyupEvent(event) {
 // セルの文字を削除する
 function textErace() {
     onCursorObject.innerText = "";
-    onCursorObject.bgColor = "";
+    onCursorObject.style.backgroundColor = "";
     keyFlag = false;
-    onCursorObject = {}
-    onCursorText = ""
+    onCursorObject = {};
+    onCursorText = "";
 
     count++
 
@@ -182,6 +209,11 @@ function textErace() {
         intermediateFlag = false;
         nightmareFlag = false;
 
+        // ボタン色初期化
+        beginnerButton.style.backgroundColor = "";
+        intermediateButton.style.backgroundColor = "";
+        nightmareButton.style.backgroundColor = "";
+
         // カウント初期化
         count = 0;
     }
@@ -214,13 +246,13 @@ onMouseMove = function (event) {
 
                 // 背景色を変える　keyupで文字が消えるフラグを立てる
                 if (cellObjectsList[i].innerText !== "") {
-                    cellObjectsList[i].bgColor = "blue";
+                    cellObjectsList[i].style.backgroundColor = "blue";
                     keyFlag = true;
                     onCursorObject = cellObjectsList[i];
                     onCursorText = onCursorObject.innerText;
                 }
             } else {
-                cellObjectsList[i].bgColor = "";
+                cellObjectsList[i].style.backgroundColor = "";
             }
         }
     }
@@ -250,7 +282,7 @@ if (output !== null) {
 document.addEventListener('keyup', keyupEvent);
 
 // 拡大率変更イベント
-window.addEventListener('resize', resizeEvent)
+window.addEventListener('resize', resizeEvent);
 
 
 // 以下コピペ
