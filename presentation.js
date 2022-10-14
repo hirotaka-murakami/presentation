@@ -38,9 +38,9 @@ nightmareRecord.innerText = "悪夢　00:" + nightmareBeatTime;
 let count = 0;
 
 // ローカルストレージ
-// localStorage.setItem('beginnerRecode', 24.099);
-// localStorage.setItem('intermediateRecode', 36.789);
-// localStorage.setItem('nightmareRecode', 59.215);
+localStorage.setItem('beginnerRecode', 24.099);
+localStorage.setItem('intermediateRecode', 36.789);
+localStorage.setItem('nightmareRecode', 59.215);
 
 
 // 初級レベル
