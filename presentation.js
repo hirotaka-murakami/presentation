@@ -26,12 +26,22 @@ let nightmareButton = document.getElementById("nightmare");
 let beginnerRecord = document.getElementById("beginnerRecord")
 let intermediateRecord = document.getElementById("intermediateRecord")
 let nightmareRecord = document.getElementById("nightmareRecord")
-let beginnerBeatTime = beginnerRecord.innerText.slice(3);
-let intermediateBeatTime = intermediateRecord.innerText.slice(3);
-let nightmareBeatTime = nightmareRecord.innerText.slice(3);
+let beginnerBeatTime = localStorage.beginnerRecode;
+let intermediateBeatTime = localStorage.intermediateRecode;
+let nightmareBeatTime = localStorage.nightmareRecode;
+beginnerRecord.innerText = "初級　00:" + beginnerBeatTime;
+intermediateRecord.innerText = "中級　00:" + intermediateBeatTime;
+nightmareRecord.innerText = "悪夢　00:" + nightmareBeatTime;
+
 
 // 消した回数をカウントする
 let count = 0;
+
+// ローカルストレージ
+// localStorage.setItem('beginnerRecode', 24.099);
+// localStorage.setItem('intermediateRecode', 36.789);
+// localStorage.setItem('nightmareRecode', 59.215);
+
 
 // 初級レベル
 function beginner() {
@@ -168,39 +178,27 @@ function textErace() {
         stop();
 
         if (beginnerFlag) { // 初級
-            // 初回時
-            if (!beginnerBeatTime) {
+            //記録更新処理 
+            if (beginnerBeatTime > timeStr2Num(showTime.innerText)) {
                 beginnerBeatTime = showTime.innerText;
                 beginnerRecord.innerText = "初級　" + beginnerBeatTime;
-            }
-            //2回目以降は最小値を更新 
-            if (timeStr2Num(beginnerBeatTime) > timeStr2Num(showTime.innerText)) {
-                beginnerBeatTime = showTime.innerText;
-                beginnerRecord.innerText = "初級　" + beginnerBeatTime;
+                localStorage.setItem('beginnerRecode', timeStr2Num(beginnerBeatTime));
             }
         }
         if (intermediateFlag) { // 中級
-            // 初回時
-            if (!intermediateBeatTime) {
+            //記録更新処理  
+            if (intermediateBeatTime > timeStr2Num(showTime.innerText)) {
                 intermediateBeatTime = showTime.innerText;
                 intermediateRecord.innerText = "中級　" + intermediateBeatTime;
-            }
-            //2回目以降は最小値を更新 
-            if (timeStr2Num(intermediateBeatTime) > timeStr2Num(showTime.innerText)) {
-                intermediateBeatTime = showTime.innerText;
-                intermediateRecord.innerText = "中級　" + intermediateBeatTime;
+                localStorage.setItem('intermediateRecode', timeStr2Num(intermediateBeatTime));
             }
         }
         if (nightmareFlag) { // ナイトメア
-            // 初回時
-            if (!nightmareBeatTime) {
+            //記録更新処理 
+            if (nightmareBeatTime > timeStr2Num(showTime.innerText)) {
                 nightmareBeatTime = showTime.innerText;
                 nightmareRecord.innerText = "悪夢　" + nightmareBeatTime;
-            }
-            //2回目以降は最小値を更新 
-            if (timeStr2Num(nightmareBeatTime) > timeStr2Num(showTime.innerText)) {
-                nightmareBeatTime = showTime.innerText;
-                nightmareRecord.innerText = "悪夢　" + nightmareBeatTime;
+                localStorage.setItem('nightmareRecode', timeStr2Num(nightmareBeatTime));
             }
         }
 
@@ -230,7 +228,7 @@ function timeStr2Num(str) {
 }
 
 // マウスムーブイベント
-function onMouseMove(event) {
+onMouseMove = function (event) {
     // マウス座標の表示
     if (output === null) {
         output = document.querySelector('#output');
