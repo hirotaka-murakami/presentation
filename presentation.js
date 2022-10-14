@@ -26,6 +26,15 @@ let nightmareButton = document.getElementById("nightmare");
 let beginnerRecord = document.getElementById("beginnerRecord")
 let intermediateRecord = document.getElementById("intermediateRecord")
 let nightmareRecord = document.getElementById("nightmareRecord")
+
+
+// ローカルストレージ レコード設定
+if (localStorage.beginnerRecod === undefined) {
+    localStorage.setItem('beginnerRecode', 24.099);
+    localStorage.setItem('intermediateRecode', 36.789);
+    localStorage.setItem('nightmareRecode', 59.215);
+}
+
 let beginnerBeatTime = localStorage.beginnerRecode;
 let intermediateBeatTime = localStorage.intermediateRecode;
 let nightmareBeatTime = localStorage.nightmareRecode;
@@ -37,10 +46,7 @@ nightmareRecord.innerText = "悪夢　00:" + nightmareBeatTime;
 // 消した回数をカウントする
 let count = 0;
 
-// ローカルストレージ
-// localStorage.setItem('beginnerRecode', 24.099);
-// localStorage.setItem('intermediateRecode', 36.789);
-// localStorage.setItem('nightmareRecode', 59.215);
+
 
 
 // 初級レベル
